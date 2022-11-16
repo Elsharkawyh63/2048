@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024</title>
+    <style>
+        @media (max-width: 767px){
+            body{  
+                display: grid;
+                grid-template-columns: repeat(auto-fill , minmax(370px,1fr));
+            }
+            th{
+                min-width: 80px;
+                height: 106px;
+                font-size: 70px;
+                padding: 0px;
+            }
+        }
+        body{
+            align-items: center;
+            margin: 0px;
+        }
+        .container{
+            margin-left: auto;
+            margin-right: auto; 
+
+        }
+        @media(min-width: 768px){
+            .container{
+                width: 700px;
+            }
+        }
+        /* medium screen  */
+        @media(min-width: 992px){
+            .container{
+                width: 925px;
+            }
+        }
+        /* large screen  */
+        @media(min-width: 1200px){
+            .container{
+                width: 1130px;
+            }
+        }
+        table{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 100%; 
+            margin: 0px;
+        }
+        th{
+            width: 150px;
+            height: 150px;
+            font-size: 100px;
+            border: 2px solid black;
+            font-weight: bold;
+            border-radius: 15px;
+            transition: .3s;
+        }
+        @media (max-width: 767px){
+            th{
+                min-width: 80px;
+                height: 106px;
+                font-size: 40px;
+                padding: 0px;
+            }
+        }
+        .div{
+            display: flex;
+            justify-content: center;
+            font-size: 40px;
+            border: 1px solid black;
+            border-radius: 15px;
+            background-color: brown;
+            color: antiquewhite;
+        }
+        .high-score{
+            display: flex;
+            justify-content: center;
+            font-size: 40px;
+            border: 1px solid black;
+            border-radius: 15px;
+            background-color: brown;
+            color: antiquewhite;
+        }
+        .disabledbutton {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd()">
+    <table>
+        <tr>
+            <th class="t1"></th>
+            <th class="t2">2</th>
+            <th class="t3"></th>
+            <th class="t4"></th>
+        </tr>
+        <tr>
+            <th class="t5"></th>
+            <th class="t6"></th>
+            <th class="t7"></th>
+            <th class="t8"></th>
+        </tr>
+        <tr>
+            <th class="t9"></th>
+            <th class="t10"></th>
+            <th class="t11"></th>
+            <th class="t12"></th>
+        </tr>
+        <tr>
+            <th class="t13"></th>
+            <th class="t14"></th>
+            <th class="t15"></th>
+            <th class="t16"></th>
+        </tr>
+    </table>
+    <div class="high-score">Your High Score Is : <span class="score">0</span></div>
+    <script>
+        let r1 = document.querySelector(".t1");
+        let r2 = document.querySelector(".t2");
+        let r3 = document.querySelector(".t3");
+        let r4 = document.querySelector(".t4");
+        let r5 = document.querySelector(".t5");
+        let r6 = document.querySelector(".t6");
+        let r7 = document.querySelector(".t7");
+        let r8 = document.querySelector(".t8");
+        let r9 = document.querySelector(".t9");
+        let r10 = document.querySelector(".t10");
+        let r11 = document.querySelector(".t11");
+        let r12 = document.querySelector(".t12");
+        let r13 = document.querySelector(".t13");
+        let r14 = document.querySelector(".t14");
+        let r15 = document.querySelector(".t15");
+        let r16 = document.querySelector(".t16");
+        let final = false ;
+        window.localStorage.setItem("state" , "changed");
+        let ser = window.localStorage.getItem("score");
+        if(ser == null){
+            window.localStorage.setItem("score" , "0");
+            let sp = document.querySelector(".score");
+            sp.innerHTML = window.localStorage.getItem("score");
+        }else{
+            let sp = document.querySelector(".score");
+            sp.innerHTML = window.localStorage.getItem("score");
+        }
+        function moveRight(s1 , s2 , s3 , s4){
+            if(s4.innerHTML == s3.innerHTML && s4.innerHTML !=""){
+                console.log("one");
+                if(s2.innerHTML == s1.innerHTML && s2.innerHTML != ""){
+                    let cal = parseInt(s4.innerHTML) + parseInt(s3.innerHTML) ; 
+                    let cal2 = parseInt(s1.innerHTML) + parseInt(s2.innerHTML) ;
+                    s4.innerHTML = cal ;
+                    s3.innerHTML = cal2 ; 
+                    s2.innerHTML = "";
+                    s1.innerHTML = "";
+                    window.localStorage.setItem("state" , "changed");
+                }else if(s2.innerHTML != s1.innerHTML && s2.innerHTML != ""){
+                    let cal = parseInt(s4.innerHTML) + parseInt(s3.innerHTML) ; 
+                    s4.innerHTML = cal ;
+                    s3.innerHTML = s2.innerHTML ;
+                    s2.innerHTML = s1.innerHTML ;
+                    s1.innerHTML = "";
+                    window.localStorage.setItem("state" , "changed");
+                }else if(s2.innerHTML != s1.innerHTML && s2.innerHTML == ""){
+                    let cal = parseInt(s4.innerHTML) + parseInt(s3.innerHTML) ; 
+                    s4.innerHTML = cal ;
+                    s3.innerHTML = s1.innerHTML ;
+                    s2.innerHTML = "";
+                    s1.innerHTML = "";
+                    window.localStorage.setItem("state" , "changed");
+                }else{
+                    let cal = parseInt(s4.innerHTML) + parseInt(s3.innerHTML) ; 
+                    s4.innerHTML = cal ;
+                    s3.innerHTML = ""; 
+                    window.localStorage.setItem("state" , "changed");
+                }
+            }else if(s3.innerHTML == s2.innerHTML && s3.innerHTML != ""){
+                console.log("two");
+                let cal = parseInt(s2.innerHTML) + parseInt(s3.innerHTML) ; 
+                if(s4.innerHTML == ""){
+                    s4.innerHTML = cal ;
+                    s3.innerHTML = s1.innerHTML ;
+                    s1.innerHTML = "";
+                    s2.innerHTML = "";
+                    window.localStorage.setItem("state" , "changed");
+                }else if(s4.innerHTML != ""){
+                    s3.innerHTML = cal ;
+                    s2.innerHTML = s1.innerHTML ;
+                    s1.innerHTML = "" ;
+                    window.localStorage.setItem("state" , "changed");
+                }
+            }else if(s3.innerHTML == s1.innerHTML && s3.innerHTML != "" && s2.innerHTML == ""){
+                console.log("three");
+                let cal = parseInt(s1.innerHTML) + parseInt(s3.innerHTML) ; 
+                if(s4.innerHTML == ""){
+                    s4.innerHTML = cal ;
+                    s3.innerHTML = "";
+                    s2.innerHTML = "";
+                    s1.innerHTML = "";
+                    window.localStorage.setItem("state" , "changed");
+                }else if(s4.innerHTML != ""){
+                    s3.innerHTML = cal ;
+                    s2.innerHTML = "";
+                    s1.innerHTML = "";
+                    window.localStorage.setItem("state" , "changed");
+                }
+            }else if(s2.innerHTML == s1.innerHTML && s2.innerHTML != ""){
+                console.log("four");
+                let cal = parseInt(s2.innerHTML) + parseInt(s1.innerHTML) ; 
+                if(s4.innerHTML == "" && s3.innerHTML == ""){
+                    s4.innerHTML = cal ;
+                    s3.innerHTML = "" ;
+                    s2.innerHTML = "" ;
+                    s1.innerHTML = "" ;
+                    window.localStorage.setItem("state" , "changed");
+                }else if(s4.innerHTML == ""){
+                    s4.innerHTML = s3.innerHTML ;
+                    s3.innerHTML = cal ;
+                    s2.innerHTML = "" ;
+                    s1.innerHTML = "" ;
+                }else if(s4.innerHTML != "" && s3.innerHTML == ""){
+                    s3.innerHTML = cal ;
+                    s2.innerHTML = "";
+                    s1.innerHTML = "";
+                    window.localStorage.setItem("state" , "changed");
+                }else if(s4.innerHTML != "" && s3.innerHTML != ""){
+                    s2.innerHTML = cal ;
+                    s1.innerHTML = "";
+                    window.localStorage.setItem("state" , "changed");
+                }
+            }else if(s4.innerHTML == s2.innerHTML && s4.innerHTML != "" && s3.innerHTML == ""){
+                console.log("five");
+                let cal = parseInt(s2.innerHTML) + parseInt(s4.innerHTML) ; 
+                s4.innerHTML = cal ;
+                s3.innerHTML = s1.innerHTML ;
+                s2.innerHTML = "";
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML == s1.innerHTML && s1.innerHTML !="" && s3.innerHTML == "" && s2.innerHTML == ""){
+                console.log("six");
+                let cal = parseInt(s1.innerHTML) + parseInt(s4.innerHTML) ; 
+                s4.innerHTML = cal ;
+                s3.innerHTML = "" ;
+                s2.innerHTML = "" ;
+                s1.innerHTML = "" ;
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML == "" && s3.innerHTML != "" && s2.innerHTML != ""){
+                console.log("seven");
+                s4.innerHTML = s3.innerHTML ;
+                s3.innerHTML = s2.innerHTML ;
+                s2.innerHTML = s1.innerHTML ;
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML == "" && s3.innerHTML != "" && s2.innerHTML == ""){
+                console.log("eight");
+                s4.innerHTML = s3.innerHTML ;
+                s3.innerHTML = s1.innerHTML ;
+                s2.innerHTML = "";
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML == "" && s3.innerHTML == "" && s2.innerHTML != ""){
+                console.log("nine");
+                s4.innerHTML = s2.innerHTML ;
+                s3.innerHTML = s1.innerHTML ;
+                s2.innerHTML = "";
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML == "" && s3.innerHTML == "" && s2.innerHTML == "" && s1.innerHTML != ""){
+                console.log("ten");
+                s4.innerHTML = s1.innerHTML ;
+                s3.innerHTML = "";
+                s2.innerHTML = "";
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML != "" && s3.innerHTML == "" && s2.innerHTML == "" && s1.innerHTML != ""){
+                console.log("space");
+                s3.innerHTML = s1.innerHTML ;
+                s2.innerHTML = "";
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML != "" && s3.innerHTML == "" && s2.innerHTML != "" && s1.innerHTML != ""){
+                console.log("space one");
+                s3.innerHTML = s2.innerHTML ;
+                s2.innerHTML = s1.innerHTML ;
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML != "" && s3.innerHTML == "" && s2.innerHTML != ""){
+                console.log("space two");
+                s3.innerHTML = s2.innerHTML ;
+                s2.innerHTML = s1.innerHTML;
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else if(s4.innerHTML != "" && s3.innerHTML != "" && s2.innerHTML == "" && s1.innerHTML != ""){
+                console.log("space three");
+                s2.innerHTML = s1.innerHTML ;
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
+            }else{
+                window.localStorage.setItem("state" , "not");
+                console.log("eleven");
+                if(r1.innerHTML != "" && r2.innerHTML != "" && r3.innerHTML != "" && r4.innerHTML != "" && r5.innerHTML != "" && r6.innerHTML != "" && r7.innerHTML != "" && r8.innerHTML != "" && r9.innerHTML != "" && r10.innerHTML != "" && r11.innerHTML != "" && r12.innerHTML != "" && r13.innerHTML != "" && r14.innerHTML != "" && r15.innerHTML != "" && r16.innerHTML != ""){
+                    return final = true ;
+                }
+            }
+        }
+        let bod = document.querySelector("table");
+        bod.addEventListener("touchstart",e => { e.preventDefault(); });
+        var startingX , startingY , movingX , movingY ;
+        function touchStart(evt){
+        startingX = evt.touches[0].clientX ;
+        startingY = evt.touches[0].clientY ;
+        }
+        function touchMove(evt){
+        movingX = evt.touches[0].clientX ;
+        movingY = evt.touches[0].clientY ;
+        }
+        function adnum(){
+            let t1 = document.querySelectorAll("th");
+            let arr = [];
+            for(i=0 ; i < t1.length ; i++){
+                arr.push(t1[i]);
+            }
+            
+            let rand = Math.floor(Math.random() * 16);
+            let rand1 = Math.floor(Math.random() * 2);
+            let ad = [2,4];
+            if(arr[rand].innerHTML == ""){
+                arr[rand].innerHTML = ad[rand1];
+            }else{
+                for(e=0 ; e < arr.length ; e++){
+                    if(arr[e].innerHTML == ""){
+                        arr[e].innerHTML = ad[rand1];
+                        break ;
+                    }
+                }
+            }
+        }
+        function coloring(){
+            let t1 = document.querySelectorAll("th");
+            for(y=0 ; y < t1.length ; y++){
+                if(t1[y].innerHTML == ""){
+                    t1[y].style.backgroundColor = "#EFC3D0";
+                }else if(t1[y].innerHTML == 2 || t1[y].innerHTML == 4 || t1[y].innerHTML == 8){
+                    t1[y].style.backgroundColor = "#E1B38D";
+                }else if(t1[y].innerHTML == 16 || t1[y].innerHTML == 32){
+                    t1[y].style.backgroundColor = "#CEA061";
+                }else if(t1[y].innerHTML == 64 || t1[y].innerHTML == 128 || t1[y].innerHTML == 256){
+                    t1[y].style.backgroundColor = "#498C61";
+                }else if(t1[y].innerHTML == 512 || t1[y].innerHTML == 1024 ){
+                    t1[y].style.backgroundColor = "#485281";
+                }else if(t1[y].innerHTML == 2048){
+                    t1[y].style.backgroundColor = "#423635";
+                    t1[y].style.color = "#EFC3D0";
+                }else if(t1[y].innerHTML == 4096 || t1[y].innerHTML == 8192){
+                    t1[y].style.color = "#EFC3D0";
+                    t1[y].style.backgroundColor = "#423635";
+                }
+            }
+        }
+        coloring()
+        function touchEnd(){
+            if(startingX+100 < movingX){
+                console.log('right');
+                if(final == true){
+                    let ac = document.querySelector(".div");
+                    if(ac == null){
+                        let div = document.createElement("div");
+                        let tx = document.createTextNode("You lost Click Here To Restart");
+                        document.body.appendChild(div);
+                        div.appendChild(tx);
+                        div.classList.add("div");
+                        div.setAttribute("onclick" , `res()`);
+                    }
+                    let tab = document.querySelector("table");
+                    tab.classList.add("disabledbutton");
+                }else{
+                    moveRight(r1 , r2 , r3 ,r4);
+                    let a1 = window.localStorage.getItem("state");
+                    moveRight(r5 , r6 , r7 ,r8);
+                    let a2 = window.localStorage.getItem("state");
+                    moveRight(r9 , r10 , r11 ,r12);
+                    let a3 = window.localStorage.getItem("state");
+                    moveRight(r13 , r14 , r15 ,r16);
+                    let a4 = window.localStorage.getItem("state");
+                    if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                        adnum();
+                        window.localStorage.setItem("state" , "not");
+                    }
+                }    
+                coloring();
+                let selcetTh = document.querySelectorAll("th");
+                for(h = 0 ; h < selcetTh.length ; h++){
+                    let sc =parseInt(window.localStorage.getItem("score")) ;
+                    if(parseInt(selcetTh[h].innerHTML) > sc){
+                        window.localStorage.setItem("score" , parseInt(selcetTh[h].innerHTML));
+                    }
+                }
+                let sp = document.querySelector(".score");
+                sp.innerHTML = window.localStorage.getItem("score");
+            } else if(startingX-100 > movingX){
+                console.log('left');
+                if(final == true){
+                    let ac = document.querySelector(".div");
+                    if(ac == null){
+                        let div = document.createElement("div");
+                        let tx = document.createTextNode("You lost Click Here To Restart");
+                        document.body.appendChild(div);
+                        div.appendChild(tx);
+                        div.classList.add("div");
+                        div.setAttribute("onclick" , `res()`);
+                    }
+                    let tab = document.querySelector("table");
+                    tab.classList.add("disabledbutton");
+                }else{
+                    moveRight(r4 , r3 , r2 ,r1);
+                    let a1 = window.localStorage.getItem("state");
+                    moveRight(r8 , r7 , r6 ,r5);
+                    let a2 = window.localStorage.getItem("state");
+                    moveRight(r12, r11 , r10 ,r9);
+                    let a3 = window.localStorage.getItem("state");
+                    moveRight(r16 , r15 , r14 ,r13);
+                    let a4 = window.localStorage.getItem("state");
+                    if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                        adnum();
+                        window.localStorage.setItem("state" , "not");
+                    }
+                }    
+                coloring();
+                let selcetTh = document.querySelectorAll("th");
+                for(h = 0 ; h < selcetTh.length ; h++){
+                    let sc =parseInt(window.localStorage.getItem("score")) ;
+                    if(parseInt(selcetTh[h].innerHTML) > sc){
+                        window.localStorage.setItem("score" , parseInt(selcetTh[h].innerHTML));
+                    }
+                }
+                let sp = document.querySelector(".score");
+                sp.innerHTML = window.localStorage.getItem("score");
+            }
+            if(startingY+100 < movingY){
+                console.log('down');
+                if(final == true){
+                    let ac = document.querySelector(".div");
+                    if(ac == null){
+                        let div = document.createElement("div");
+                        let tx = document.createTextNode("You lost Click Here To Restart");
+                        document.body.appendChild(div);
+                        div.appendChild(tx);
+                        div.classList.add("div");
+                        div.setAttribute("onclick" , `res()`);
+                    }
+                    let tab = document.querySelector("table");
+                    tab.classList.add("disabledbutton");
+                }else{
+                    moveRight(r1 , r5 , r9 ,r13);
+                    let a1 = window.localStorage.getItem("state");
+                    moveRight(r2 , r6 , r10 ,r14);
+                    let a2 = window.localStorage.getItem("state");
+                    moveRight(r3 , r7 , r11 ,r15);
+                    let a3 = window.localStorage.getItem("state");
+                    moveRight(r4 , r8 , r12 ,r16);
+                    let a4 = window.localStorage.getItem("state");
+                    if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                        adnum();
+                        window.localStorage.setItem("state" , "not");
+                    }
+                }    
+                coloring();
+                let selcetTh = document.querySelectorAll("th");
+                for(h = 0 ; h < selcetTh.length ; h++){
+                    let sc =parseInt(window.localStorage.getItem("score")) ;
+                    if(parseInt(selcetTh[h].innerHTML) > sc){
+                        window.localStorage.setItem("score" , parseInt(selcetTh[h].innerHTML));
+                    }
+                }
+                let sp = document.querySelector(".score");
+                sp.innerHTML = window.localStorage.getItem("score");
+            } else if(startingY-100 > movingY){
+                console.log('up');
+                if(final == true){
+                    let ac = document.querySelector(".div");
+                    if(ac == null){
+                        let div = document.createElement("div");
+                        let tx = document.createTextNode("You lost Click Here To Restart");
+                        document.body.appendChild(div);
+                        div.appendChild(tx);
+                        div.classList.add("div");
+                        div.setAttribute("onclick" , `res()`);
+                    }
+                    let tab = document.querySelector("table");
+                    tab.classList.add("disabledbutton");
+                }else{
+                    moveRight(r13 , r9 , r5 ,r1);
+                    let a1 = window.localStorage.getItem("state");
+                    moveRight(r14 , r10 , r6 ,r2);
+                    let a2 = window.localStorage.getItem("state");
+                    moveRight(r15 , r11 , r7 ,r3);
+                    let a3 = window.localStorage.getItem("state");
+                    moveRight(r16 , r12 , r8 ,r4);
+                    let a4 = window.localStorage.getItem("state");
+                    if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                        adnum();
+                        window.localStorage.setItem("state" , "not");
+                    }
+                }    
+                coloring();
+                let selcetTh = document.querySelectorAll("th");
+                for(h = 0 ; h < selcetTh.length ; h++){
+                    let sc =parseInt(window.localStorage.getItem("score")) ;
+                    if(parseInt(selcetTh[h].innerHTML) > sc){
+                        window.localStorage.setItem("score" , parseInt(selcetTh[h].innerHTML));
+                    }
+                }
+                let sp = document.querySelector(".score");
+                sp.innerHTML = window.localStorage.getItem("score");
+            }
+            coloring();
+        }
+        function res(){
+            let selcetTh = document.querySelectorAll("th");
+            for(h = 0 ; h < selcetTh.length ; h++){
+                selcetTh[h].innerHTML = "";
+            }
+            selcetTh[2].innerHTML = 2 ;
+            let table1 = document.querySelector("table");
+            table1.classList.remove("disabledbutton") ;
+            final = false ;
+            coloring();
+        }
+    </script>
+</body>
+</html>
+
