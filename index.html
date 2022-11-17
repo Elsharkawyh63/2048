@@ -76,17 +76,19 @@
             font-size: 40px;
             border: 1px solid black;
             border-radius: 15px;
-            background-color: brown;
+            background-color: #EB6440;
             color: antiquewhite;
         }
         .high-score{
             display: flex;
             justify-content: center;
-            font-size: 40px;
+            font-size: 35px;
             border: 1px solid black;
             border-radius: 15px;
-            background-color: brown;
+            background-color: #EB6440;
             color: antiquewhite;
+            align-items: center;
+            height: 70px;
         }
         .disabledbutton {
             pointer-events: none;
@@ -95,6 +97,7 @@
     </style>
 </head>
 <body ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd()">
+    <div class="div" onclick="res()">Restart</div>
     <table>
         <tr>
             <th class="t1"></th>
@@ -305,9 +308,6 @@
             }else{
                 window.localStorage.setItem("state" , "not");
                 console.log("eleven");
-                if(r1.innerHTML != "" && r2.innerHTML != "" && r3.innerHTML != "" && r4.innerHTML != "" && r5.innerHTML != "" && r6.innerHTML != "" && r7.innerHTML != "" && r8.innerHTML != "" && r9.innerHTML != "" && r10.innerHTML != "" && r11.innerHTML != "" && r12.innerHTML != "" && r13.innerHTML != "" && r14.innerHTML != "" && r15.innerHTML != "" && r16.innerHTML != ""){
-                    return final = true ;
-                }
             }
         }
         let bod = document.querySelector("table");
@@ -368,32 +368,18 @@
         function touchEnd(){
             if(startingX+100 < movingX){
                 console.log('right');
-                if(final == true){
-                    let ac = document.querySelector(".div");
-                    if(ac == null){
-                        let div = document.createElement("div");
-                        let tx = document.createTextNode("You lost Click Here To Restart");
-                        document.body.appendChild(div);
-                        div.appendChild(tx);
-                        div.classList.add("div");
-                        div.setAttribute("onclick" , `res()`);
-                    }
-                    let tab = document.querySelector("table");
-                    tab.classList.add("disabledbutton");
-                }else{
-                    moveRight(r1 , r2 , r3 ,r4);
-                    let a1 = window.localStorage.getItem("state");
-                    moveRight(r5 , r6 , r7 ,r8);
-                    let a2 = window.localStorage.getItem("state");
-                    moveRight(r9 , r10 , r11 ,r12);
-                    let a3 = window.localStorage.getItem("state");
-                    moveRight(r13 , r14 , r15 ,r16);
-                    let a4 = window.localStorage.getItem("state");
-                    if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
-                        adnum();
-                        window.localStorage.setItem("state" , "not");
-                    }
-                }    
+                moveRight(r1 , r2 , r3 ,r4);
+                let a1 = window.localStorage.getItem("state");
+                moveRight(r5 , r6 , r7 ,r8);
+                let a2 = window.localStorage.getItem("state");
+                moveRight(r9 , r10 , r11 ,r12);
+                let a3 = window.localStorage.getItem("state");
+                moveRight(r13 , r14 , r15 ,r16);
+                let a4 = window.localStorage.getItem("state");
+                if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                    adnum();
+                    window.localStorage.setItem("state" , "not");
+                }  
                 coloring();
                 let selcetTh = document.querySelectorAll("th");
                 for(h = 0 ; h < selcetTh.length ; h++){
@@ -406,32 +392,18 @@
                 sp.innerHTML = window.localStorage.getItem("score");
             } else if(startingX-100 > movingX){
                 console.log('left');
-                if(final == true){
-                    let ac = document.querySelector(".div");
-                    if(ac == null){
-                        let div = document.createElement("div");
-                        let tx = document.createTextNode("You lost Click Here To Restart");
-                        document.body.appendChild(div);
-                        div.appendChild(tx);
-                        div.classList.add("div");
-                        div.setAttribute("onclick" , `res()`);
-                    }
-                    let tab = document.querySelector("table");
-                    tab.classList.add("disabledbutton");
-                }else{
-                    moveRight(r4 , r3 , r2 ,r1);
-                    let a1 = window.localStorage.getItem("state");
-                    moveRight(r8 , r7 , r6 ,r5);
-                    let a2 = window.localStorage.getItem("state");
-                    moveRight(r12, r11 , r10 ,r9);
-                    let a3 = window.localStorage.getItem("state");
-                    moveRight(r16 , r15 , r14 ,r13);
-                    let a4 = window.localStorage.getItem("state");
-                    if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
-                        adnum();
-                        window.localStorage.setItem("state" , "not");
-                    }
-                }    
+                moveRight(r4 , r3 , r2 ,r1);
+                let a1 = window.localStorage.getItem("state");
+                moveRight(r8 , r7 , r6 ,r5);
+                let a2 = window.localStorage.getItem("state");
+                moveRight(r12, r11 , r10 ,r9);
+                let a3 = window.localStorage.getItem("state");
+                moveRight(r16 , r15 , r14 ,r13);
+                let a4 = window.localStorage.getItem("state");
+                if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                    adnum();
+                    window.localStorage.setItem("state" , "not");
+                }  
                 coloring();
                 let selcetTh = document.querySelectorAll("th");
                 for(h = 0 ; h < selcetTh.length ; h++){
@@ -445,32 +417,18 @@
             }
             if(startingY+100 < movingY){
                 console.log('down');
-                if(final == true){
-                    let ac = document.querySelector(".div");
-                    if(ac == null){
-                        let div = document.createElement("div");
-                        let tx = document.createTextNode("You lost Click Here To Restart");
-                        document.body.appendChild(div);
-                        div.appendChild(tx);
-                        div.classList.add("div");
-                        div.setAttribute("onclick" , `res()`);
-                    }
-                    let tab = document.querySelector("table");
-                    tab.classList.add("disabledbutton");
-                }else{
-                    moveRight(r1 , r5 , r9 ,r13);
-                    let a1 = window.localStorage.getItem("state");
-                    moveRight(r2 , r6 , r10 ,r14);
-                    let a2 = window.localStorage.getItem("state");
-                    moveRight(r3 , r7 , r11 ,r15);
-                    let a3 = window.localStorage.getItem("state");
-                    moveRight(r4 , r8 , r12 ,r16);
-                    let a4 = window.localStorage.getItem("state");
-                    if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
-                        adnum();
-                        window.localStorage.setItem("state" , "not");
-                    }
-                }    
+                moveRight(r1 , r5 , r9 ,r13);
+                let a1 = window.localStorage.getItem("state");
+                moveRight(r2 , r6 , r10 ,r14);
+                let a2 = window.localStorage.getItem("state");
+                moveRight(r3 , r7 , r11 ,r15);
+                let a3 = window.localStorage.getItem("state");
+                moveRight(r4 , r8 , r12 ,r16);
+                let a4 = window.localStorage.getItem("state");
+                if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                    adnum();
+                    window.localStorage.setItem("state" , "not");
+                }
                 coloring();
                 let selcetTh = document.querySelectorAll("th");
                 for(h = 0 ; h < selcetTh.length ; h++){
@@ -483,32 +441,18 @@
                 sp.innerHTML = window.localStorage.getItem("score");
             } else if(startingY-100 > movingY){
                 console.log('up');
-                if(final == true){
-                    let ac = document.querySelector(".div");
-                    if(ac == null){
-                        let div = document.createElement("div");
-                        let tx = document.createTextNode("You lost Click Here To Restart");
-                        document.body.appendChild(div);
-                        div.appendChild(tx);
-                        div.classList.add("div");
-                        div.setAttribute("onclick" , `res()`);
-                    }
-                    let tab = document.querySelector("table");
-                    tab.classList.add("disabledbutton");
-                }else{
-                    moveRight(r13 , r9 , r5 ,r1);
-                    let a1 = window.localStorage.getItem("state");
-                    moveRight(r14 , r10 , r6 ,r2);
-                    let a2 = window.localStorage.getItem("state");
-                    moveRight(r15 , r11 , r7 ,r3);
-                    let a3 = window.localStorage.getItem("state");
-                    moveRight(r16 , r12 , r8 ,r4);
-                    let a4 = window.localStorage.getItem("state");
-                    if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
-                        adnum();
-                        window.localStorage.setItem("state" , "not");
-                    }
-                }    
+                moveRight(r13 , r9 , r5 ,r1);
+                let a1 = window.localStorage.getItem("state");
+                moveRight(r14 , r10 , r6 ,r2);
+                let a2 = window.localStorage.getItem("state");
+                moveRight(r15 , r11 , r7 ,r3);
+                let a3 = window.localStorage.getItem("state");
+                moveRight(r16 , r12 , r8 ,r4);
+                let a4 = window.localStorage.getItem("state");
+                if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                    adnum();
+                    window.localStorage.setItem("state" , "not");
+                }  
                 coloring();
                 let selcetTh = document.querySelectorAll("th");
                 for(h = 0 ; h < selcetTh.length ; h++){
@@ -530,12 +474,27 @@
             selcetTh[2].innerHTML = 2 ;
             let table1 = document.querySelector("table");
             table1.classList.remove("disabledbutton") ;
-            final = false ;
-            let sdi = document.querySelector(".div");
-            sdi.remove();
             coloring();
         }
+
+
+        // if(r1.innerHTML != "" && r2.innerHTML != "" && r3.innerHTML != "" && r4.innerHTML != "" && r5.innerHTML != "" && r6.innerHTML != "" && r7.innerHTML != "" && r8.innerHTML != "" && r9.innerHTML != "" && r10.innerHTML != "" && r11.innerHTML != "" && r12.innerHTML != "" && r13.innerHTML != "" && r14.innerHTML != "" && r15.innerHTML != "" && r16.innerHTML != ""){
+        //             if(a1 == "not" && a2 == "not" && a3 == "not" && a4 == "not"){
+        //                 let ac = document.querySelector(".div");
+        //                 if(ac == null){
+        //                     let div = document.createElement("div");
+        //                     let tx = document.createTextNode("You lost Click Here To Restart");
+        //                     document.body.appendChild(div);
+        //                     div.appendChild(tx);
+        //                     div.classList.add("div");
+        //                     div.setAttribute("onclick" , `res()`);
+        //                 }
+        //                 let tab = document.querySelector("table");
+        //                 tab.classList.add("disabledbutton");
+        //             }
+        //         }else 
+
+
     </script>
 </body>
 </html>
-
