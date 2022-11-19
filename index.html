@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2048 mini game</title>
+    <title>2024</title>
     <style>
         @media (max-width: 767px){
             body{  
@@ -21,6 +21,7 @@
         body{
             align-items: center;
             margin: 0px;
+            background-color: #041b2d;
         }
         .container{
             margin-left: auto;
@@ -56,11 +57,19 @@
         th{
             width: 150px;
             height: 150px;
-            font-size: 100px;
-            border: 2px solid black;
+            font-size: 70px;
+            border: 2px solid #ffff;
             font-weight: bold;
             border-radius: 15px;
-            transition: .3s;
+            transition: .5s;
+            box-shadow: 0px 0px 5px #ffff;
+            /* animation: show 200ms ease-in-out; */
+        }
+        @keyframes show{
+            0%{
+                opacity: .5;
+                transform: scale(0);
+            }
         }
         @media (max-width: 767px){
             th{
@@ -70,13 +79,14 @@
                 padding: 0px;
             }
         }
+
         .div{
             display: flex;
             justify-content: center;
             font-size: 40px;
             border: 1px solid black;
             border-radius: 15px;
-            background-color: #EB6440;
+            background-color: #266b6e;
             color: antiquewhite;
         }
         .high-score{
@@ -85,7 +95,7 @@
             font-size: 35px;
             border: 1px solid black;
             border-radius: 15px;
-            background-color: #EB6440;
+            background-color: #266b6e;
             color: antiquewhite;
             align-items: center;
             height: 70px;
@@ -101,14 +111,14 @@
     <table>
         <tr>
             <th class="t1"></th>
-            <th class="t2">2</th>
+            <th class="t2"></th>
             <th class="t3"></th>
             <th class="t4"></th>
         </tr>
         <tr>
             <th class="t5"></th>
             <th class="t6"></th>
-            <th class="t7"></th>
+            <th class="t7">2</th>
             <th class="t8"></th>
         </tr>
         <tr>
@@ -155,7 +165,7 @@
         }
         function moveRight(s1 , s2 , s3 , s4){
             if(s4.innerHTML == s3.innerHTML && s4.innerHTML !=""){
-                console.log("one");
+                //first case
                 if(s2.innerHTML == s1.innerHTML && s2.innerHTML != ""){
                     let cal = parseInt(s4.innerHTML) + parseInt(s3.innerHTML) ; 
                     let cal2 = parseInt(s1.innerHTML) + parseInt(s2.innerHTML) ;
@@ -184,8 +194,16 @@
                     s3.innerHTML = ""; 
                     window.localStorage.setItem("state" , "changed");
                 }
+            }else if(s4.innerHTML == s2.innerHTML && s4.innerHTML != "" && s3.innerHTML == ""){
+                //socand case
+                let cal = parseInt(s2.innerHTML) + parseInt(s4.innerHTML) ; 
+                s4.innerHTML = cal ;
+                s3.innerHTML = s1.innerHTML ;
+                s2.innerHTML = "";
+                s1.innerHTML = "";
+                window.localStorage.setItem("state" , "changed");
             }else if(s3.innerHTML == s2.innerHTML && s3.innerHTML != ""){
-                console.log("two");
+                //third case
                 let cal = parseInt(s2.innerHTML) + parseInt(s3.innerHTML) ; 
                 if(s4.innerHTML == ""){
                     s4.innerHTML = cal ;
@@ -200,7 +218,7 @@
                     window.localStorage.setItem("state" , "changed");
                 }
             }else if(s3.innerHTML == s1.innerHTML && s3.innerHTML != "" && s2.innerHTML == ""){
-                console.log("three");
+                //case number four
                 let cal = parseInt(s1.innerHTML) + parseInt(s3.innerHTML) ; 
                 if(s4.innerHTML == ""){
                     s4.innerHTML = cal ;
@@ -215,7 +233,7 @@
                     window.localStorage.setItem("state" , "changed");
                 }
             }else if(s2.innerHTML == s1.innerHTML && s2.innerHTML != ""){
-                console.log("four");
+                //case number five
                 let cal = parseInt(s2.innerHTML) + parseInt(s1.innerHTML) ; 
                 if(s4.innerHTML == "" && s3.innerHTML == ""){
                     s4.innerHTML = cal ;
@@ -238,16 +256,8 @@
                     s1.innerHTML = "";
                     window.localStorage.setItem("state" , "changed");
                 }
-            }else if(s4.innerHTML == s2.innerHTML && s4.innerHTML != "" && s3.innerHTML == ""){
-                console.log("five");
-                let cal = parseInt(s2.innerHTML) + parseInt(s4.innerHTML) ; 
-                s4.innerHTML = cal ;
-                s3.innerHTML = s1.innerHTML ;
-                s2.innerHTML = "";
-                s1.innerHTML = "";
-                window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML == s1.innerHTML && s1.innerHTML !="" && s3.innerHTML == "" && s2.innerHTML == ""){
-                console.log("six");
+                //case number six
                 let cal = parseInt(s1.innerHTML) + parseInt(s4.innerHTML) ; 
                 s4.innerHTML = cal ;
                 s3.innerHTML = "" ;
@@ -255,63 +265,65 @@
                 s1.innerHTML = "" ;
                 window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML == "" && s3.innerHTML != "" && s2.innerHTML != ""){
-                console.log("seven");
+                //case number seven
                 s4.innerHTML = s3.innerHTML ;
                 s3.innerHTML = s2.innerHTML ;
                 s2.innerHTML = s1.innerHTML ;
                 s1.innerHTML = "";
                 window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML == "" && s3.innerHTML != "" && s2.innerHTML == ""){
-                console.log("eight");
+                //case number eight
                 s4.innerHTML = s3.innerHTML ;
                 s3.innerHTML = s1.innerHTML ;
                 s2.innerHTML = "";
                 s1.innerHTML = "";
                 window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML == "" && s3.innerHTML == "" && s2.innerHTML != ""){
-                console.log("nine");
+                //case number nine
                 s4.innerHTML = s2.innerHTML ;
                 s3.innerHTML = s1.innerHTML ;
                 s2.innerHTML = "";
                 s1.innerHTML = "";
                 window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML == "" && s3.innerHTML == "" && s2.innerHTML == "" && s1.innerHTML != ""){
-                console.log("ten");
+                //case number ten
                 s4.innerHTML = s1.innerHTML ;
                 s3.innerHTML = "";
                 s2.innerHTML = "";
                 s1.innerHTML = "";
                 window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML != "" && s3.innerHTML == "" && s2.innerHTML == "" && s1.innerHTML != ""){
-                console.log("space");
+                //case number eleven
                 s3.innerHTML = s1.innerHTML ;
                 s2.innerHTML = "";
                 s1.innerHTML = "";
                 window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML != "" && s3.innerHTML == "" && s2.innerHTML != "" && s1.innerHTML != ""){
-                console.log("space one");
+                //case number twelve
                 s3.innerHTML = s2.innerHTML ;
                 s2.innerHTML = s1.innerHTML ;
                 s1.innerHTML = "";
                 window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML != "" && s3.innerHTML == "" && s2.innerHTML != ""){
-                console.log("space two");
+                //case number trirteen
                 s3.innerHTML = s2.innerHTML ;
                 s2.innerHTML = s1.innerHTML;
                 s1.innerHTML = "";
                 window.localStorage.setItem("state" , "changed");
             }else if(s4.innerHTML != "" && s3.innerHTML != "" && s2.innerHTML == "" && s1.innerHTML != ""){
-                console.log("space three");
+                //case number fourteen
                 s2.innerHTML = s1.innerHTML ;
                 s1.innerHTML = "";
                 window.localStorage.setItem("state" , "changed");
             }else{
+                // nothing happen so make state => not
                 window.localStorage.setItem("state" , "not");
-                console.log("eleven");
             }
         }
         let bod = document.querySelector("table");
+        // make the touch on table disable so you cant refresh page when you swap down
         bod.addEventListener("touchstart",e => { e.preventDefault(); });
+        // declare touch and make the function for swaping
         var startingX , startingY , movingX , movingY ;
         function touchStart(evt){
         startingX = evt.touches[0].clientX ;
@@ -321,53 +333,77 @@
         movingX = evt.touches[0].clientX ;
         movingY = evt.touches[0].clientY ;
         }
+        // this function add random naumber 
         function adnum(){
             let t1 = document.querySelectorAll("th");
-            let arr = [];
-            for(i=0 ; i < t1.length ; i++){
-                arr.push(t1[i]);
-            }
-            
             let rand = Math.floor(Math.random() * 16);
             let rand1 = Math.floor(Math.random() * 2);
             let ad = [2,4];
-            if(arr[rand].innerHTML == ""){
-                arr[rand].innerHTML = ad[rand1];
+            if(t1[rand].innerHTML == ""){
+                t1[rand].innerHTML = ad[rand1];
+                t1[rand].style.animation = "show 200ms ease-in-out" ;
+                setTimeout(function rem(){
+                    t1[rand].style.animation = "";
+                }, 600);
             }else{
-                for(e=0 ; e < arr.length ; e++){
-                    if(arr[e].innerHTML == ""){
-                        arr[e].innerHTML = ad[rand1];
+                for(e=0 ; e < t1.length ; e++){
+                    if(t1[e].innerHTML == ""){
+                        t1[e].innerHTML = ad[rand1];
+                        t1[e].style.animation = "show 200ms ease-in-out" ;
+                        setTimeout(function rem(){
+                            t1[e].style.animation = "";
+                        }, 600);
                         break ;
                     }
                 }
             }
         }
+        // this function coloring every cell 
         function coloring(){
             let t1 = document.querySelectorAll("th");
             for(y=0 ; y < t1.length ; y++){
                 if(t1[y].innerHTML == ""){
-                    t1[y].style.backgroundColor = "#EFC3D0";
-                }else if(t1[y].innerHTML == 2 || t1[y].innerHTML == 4 || t1[y].innerHTML == 8){
-                    t1[y].style.backgroundColor = "#E1B38D";
-                }else if(t1[y].innerHTML == 16 || t1[y].innerHTML == 32){
-                    t1[y].style.backgroundColor = "#CEA061";
-                }else if(t1[y].innerHTML == 64 || t1[y].innerHTML == 128 || t1[y].innerHTML == 256){
-                    t1[y].style.backgroundColor = "#498C61";
-                }else if(t1[y].innerHTML == 512 || t1[y].innerHTML == 1024 ){
-                    t1[y].style.backgroundColor = "#485281";
-                }else if(t1[y].innerHTML == 2048){
-                    t1[y].style.backgroundColor = "#423635";
-                    t1[y].style.color = "#EFC3D0";
-                }else if(t1[y].innerHTML == 4096 || t1[y].innerHTML == 8192){
-                    t1[y].style.color = "#EFC3D0";
-                    t1[y].style.backgroundColor = "#423635";
+                    t1[y].style.backgroundColor = "#d1eeea";
+                }else if(t1[y].innerHTML == 2 ){
+                    t1[y].style.backgroundColor = "#a8dbd9";
+                    t1[y].style.color = "black";
+                }else if(t1[y].innerHTML == 4){
+                    t1[y].style.backgroundColor = "#a8dbd9";
+                    t1[y].style.color = "black";
+                }else if(t1[y].innerHTML == 8){
+                    t1[y].style.backgroundColor = "#85c4c9";
+                    t1[y].style.color = "black";
+                }else if(t1[y].innerHTML == 16){
+                    t1[y].style.backgroundColor = "#68abb8";
+                    t1[y].style.color = "black";
+                }else if(t1[y].innerHTML == 32){
+                    t1[y].style.backgroundColor = "#4f90a6";
+                    t1[y].style.color = "black";
+                }else if(t1[y].innerHTML == 64 ){
+                    t1[y].style.backgroundColor = "#3b738f";
+                    t1[y].style.color = "black";
+                }else if(t1[y].innerHTML == 128){
+                    t1[y].style.backgroundColor = "#2a5674";
+                    t1[y].style.color = "black";
+                }else if(t1[y].innerHTML == 256){
+                    t1[y].style.backgroundColor = "#074050";
+                    t1[y].style.color = "#d1eeea";
+                }else if(t1[y].innerHTML == 512){
+                    t1[y].style.backgroundColor = "#123f5a";
+                    t1[y].style.color = "#d1eeea";
+                }else if(t1[y].innerHTML == 1024 ){
+                    t1[y].style.backgroundColor = "#672044";
+                    t1[y].style.color = "#d1eeea";
+                }else if(t1[y].innerHTML == 2048 || t1[y].innerHTML == 4096 || t1[y].innerHTML == 8192){
+                    t1[y].style.backgroundColor = "#6c2167";
+                    t1[y].style.color = "#d1eeea";
                 }
             }
         }
         coloring()
         function touchEnd(){
             if(startingX+100 < movingX){
-                console.log('right');
+                // swap right
                 moveRight(r1 , r2 , r3 ,r4);
                 let a1 = window.localStorage.getItem("state");
                 moveRight(r5 , r6 , r7 ,r8);
@@ -391,7 +427,7 @@
                 let sp = document.querySelector(".score");
                 sp.innerHTML = window.localStorage.getItem("score");
             } else if(startingX-100 > movingX){
-                console.log('left');
+                // swap left
                 moveRight(r4 , r3 , r2 ,r1);
                 let a1 = window.localStorage.getItem("state");
                 moveRight(r8 , r7 , r6 ,r5);
@@ -416,7 +452,7 @@
                 sp.innerHTML = window.localStorage.getItem("score");
             }
             if(startingY+100 < movingY){
-                console.log('down');
+                // swap down
                 moveRight(r1 , r5 , r9 ,r13);
                 let a1 = window.localStorage.getItem("state");
                 moveRight(r2 , r6 , r10 ,r14);
@@ -440,7 +476,7 @@
                 let sp = document.querySelector(".score");
                 sp.innerHTML = window.localStorage.getItem("score");
             } else if(startingY-100 > movingY){
-                console.log('up');
+                //swap up
                 moveRight(r13 , r9 , r5 ,r1);
                 let a1 = window.localStorage.getItem("state");
                 moveRight(r14 , r10 , r6 ,r2);
@@ -466,6 +502,7 @@
             }
             coloring();
         }
+        // this function to restart table value when the game is end
         function res(){
             let selcetTh = document.querySelectorAll("th");
             for(h = 0 ; h < selcetTh.length ; h++){
@@ -476,6 +513,130 @@
             table1.classList.remove("disabledbutton") ;
             coloring();
         }
+        // this function for arrow button
+        document.onkeydown = function(event) {
+            switch (event.keyCode) {
+            case 37:
+                // Left key pressed'
+
+                moveRight(r4 , r3 , r2 ,r1);
+                let b1 = window.localStorage.getItem("state");
+                moveRight(r8 , r7 , r6 ,r5);
+                let b2 = window.localStorage.getItem("state");
+                moveRight(r12, r11 , r10 ,r9);
+                let b3 = window.localStorage.getItem("state");
+                moveRight(r16 , r15 , r14 ,r13);
+                let b4 = window.localStorage.getItem("state");
+                if(b1 == "changed" || b2 == "changed" || b3 == "changed" || b4== "changed"){
+                    adnum();
+                    window.localStorage.setItem("state" , "not");
+                }  
+                coloring();
+                let selcetTh1 = document.querySelectorAll("th");
+                for(h = 0 ; h < selcetTh1.length ; h++){
+                    let sc =parseInt(window.localStorage.getItem("score")) ;
+                    if(parseInt(selcetTh1[h].innerHTML) > sc){
+                        window.localStorage.setItem("score" , parseInt(selcetTh1[h].innerHTML));
+                    }
+                }
+                let sp1 = document.querySelector(".score");
+                sp1.innerHTML = window.localStorage.getItem("score");
+                break;
+            case 38:
+                // Up key pressed
+
+                moveRight(r13 , r9 , r5 ,r1);
+                let d1 = window.localStorage.getItem("state");
+                moveRight(r14 , r10 , r6 ,r2);
+                let d2 = window.localStorage.getItem("state");
+                moveRight(r15 , r11 , r7 ,r3);
+                let d3 = window.localStorage.getItem("state");
+                moveRight(r16 , r12 , r8 ,r4);
+                let d4 = window.localStorage.getItem("state");
+                if(d1 == "changed" || d2 == "changed" || d3 == "changed" || d4== "changed"){
+                    adnum();
+                    window.localStorage.setItem("state" , "not");
+                }  
+                coloring();
+                let selcetTh3 = document.querySelectorAll("th");
+                for(h = 0 ; h < selcetTh3.length ; h++){
+                    let sc =parseInt(window.localStorage.getItem("score")) ;
+                    if(parseInt(selcetTh3[h].innerHTML) > sc){
+                        window.localStorage.setItem("score" , parseInt(selcetTh3[h].innerHTML));
+                    }
+                }
+                let sp3 = document.querySelector(".score");
+                sp3.innerHTML = window.localStorage.getItem("score");
+                break;
+            case 39:
+                // Right key pressed
+
+                moveRight(r1 , r2 , r3 ,r4);
+                let a1 = window.localStorage.getItem("state");
+                moveRight(r5 , r6 , r7 ,r8);
+                let a2 = window.localStorage.getItem("state");
+                moveRight(r9 , r10 , r11 ,r12);
+                let a3 = window.localStorage.getItem("state");
+                moveRight(r13 , r14 , r15 ,r16);
+                let a4 = window.localStorage.getItem("state");
+                if(a1 == "changed" || a2 == "changed" || a3 == "changed" || a4== "changed"){
+                    adnum();
+                    window.localStorage.setItem("state" , "not");
+                }  
+                coloring();
+                let selcetTh = document.querySelectorAll("th");
+                for(h = 0 ; h < selcetTh.length ; h++){
+                    let sc =parseInt(window.localStorage.getItem("score")) ;
+                    if(parseInt(selcetTh[h].innerHTML) > sc){
+                        window.localStorage.setItem("score" , parseInt(selcetTh[h].innerHTML));
+                    }
+                }
+                let sp = document.querySelector(".score");
+                sp.innerHTML = window.localStorage.getItem("score");
+                break;
+            case 40:
+                // Down key pressed
+
+                moveRight(r1 , r5 , r9 ,r13);
+                let c1 = window.localStorage.getItem("state");
+                moveRight(r2 , r6 , r10 ,r14);
+                let c2 = window.localStorage.getItem("state");
+                moveRight(r3 , r7 , r11 ,r15);
+                let c3 = window.localStorage.getItem("state");
+                moveRight(r4 , r8 , r12 ,r16);
+                let c4 = window.localStorage.getItem("state");
+                if(c1 == "changed" || c2 == "changed" || c3 == "changed" || c4== "changed"){
+                    adnum();
+                    window.localStorage.setItem("state" , "not");
+                }
+                coloring();
+                let selcetTh2 = document.querySelectorAll("th");
+                for(h = 0 ; h < selcetTh2.length ; h++){
+                    let sc =parseInt(window.localStorage.getItem("score")) ;
+                    if(parseInt(selcetTh2[h].innerHTML) > sc){
+                        window.localStorage.setItem("score" , parseInt(selcetTh2[h].innerHTML));
+                    }
+                }
+                let sp2 = document.querySelector(".score");
+                sp2.innerHTML = window.localStorage.getItem("score");
+                break;
+            }
+        };
+        // if(r1.innerHTML != "" && r2.innerHTML != "" && r3.innerHTML != "" && r4.innerHTML != "" && r5.innerHTML != "" && r6.innerHTML != "" && r7.innerHTML != "" && r8.innerHTML != "" && r9.innerHTML != "" && r10.innerHTML != "" && r11.innerHTML != "" && r12.innerHTML != "" && r13.innerHTML != "" && r14.innerHTML != "" && r15.innerHTML != "" && r16.innerHTML != ""){
+        //             if(a1 == "not" && a2 == "not" && a3 == "not" && a4 == "not"){
+        //                 let ac = document.querySelector(".div");
+        //                 if(ac == null){
+        //                     let div = document.createElement("div");
+        //                     let tx = document.createTextNode("You lost Click Here To Restart");
+        //                     document.body.appendChild(div);
+        //                     div.appendChild(tx);
+        //                     div.classList.add("div");
+        //                     div.setAttribute("onclick" , `res()`);
+        //                 }
+        //                 let tab = document.querySelector("table");
+        //                 tab.classList.add("disabledbutton");
+        //             }
+        //         }else 
     </script>
 </body>
 </html>
