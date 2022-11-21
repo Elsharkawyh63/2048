@@ -426,6 +426,7 @@
                 }
                 let sp = document.querySelector(".score");
                 sp.innerHTML = window.localStorage.getItem("score");
+                getfinal()
             } else if(startingX-100 > movingX){
                 // swap left
                 moveRight(r4 , r3 , r2 ,r1);
@@ -450,6 +451,7 @@
                 }
                 let sp = document.querySelector(".score");
                 sp.innerHTML = window.localStorage.getItem("score");
+                getfinal()
             }
             if(startingY+100 < movingY){
                 // swap down
@@ -475,6 +477,7 @@
                 }
                 let sp = document.querySelector(".score");
                 sp.innerHTML = window.localStorage.getItem("score");
+                getfinal()
             } else if(startingY-100 > movingY){
                 //swap up
                 moveRight(r13 , r9 , r5 ,r1);
@@ -499,6 +502,7 @@
                 }
                 let sp = document.querySelector(".score");
                 sp.innerHTML = window.localStorage.getItem("score");
+                getfinal()
             }
             coloring();
         }
@@ -541,6 +545,7 @@
                 }
                 let sp1 = document.querySelector(".score");
                 sp1.innerHTML = window.localStorage.getItem("score");
+                getfinal()
                 break;
             case 38:
                 // Up key pressed
@@ -567,6 +572,7 @@
                 }
                 let sp3 = document.querySelector(".score");
                 sp3.innerHTML = window.localStorage.getItem("score");
+                getfinal()
                 break;
             case 39:
                 // Right key pressed
@@ -593,6 +599,7 @@
                 }
                 let sp = document.querySelector(".score");
                 sp.innerHTML = window.localStorage.getItem("score");
+                getfinal()
                 break;
             case 40:
                 // Down key pressed
@@ -619,9 +626,36 @@
                 }
                 let sp2 = document.querySelector(".score");
                 sp2.innerHTML = window.localStorage.getItem("score");
+                getfinal()
                 break;
             }
         };
+        function getfinal(){
+            let r1 = document.querySelector(".t1").innerHTML;
+            let r2 = document.querySelector(".t2").innerHTML;
+            let r3 = document.querySelector(".t3").innerHTML;
+            let r4 = document.querySelector(".t4").innerHTML;
+            let r5 = document.querySelector(".t5").innerHTML;
+            let r6 = document.querySelector(".t6").innerHTML;
+            let r7 = document.querySelector(".t7").innerHTML;
+            let r8 = document.querySelector(".t8").innerHTML;
+            let r9 = document.querySelector(".t9").innerHTML;
+            let r10 = document.querySelector(".t10").innerHTML;
+            let r11 = document.querySelector(".t11").innerHTML;
+            let r12 = document.querySelector(".t12").innerHTML;
+            let r13 = document.querySelector(".t13").innerHTML;
+            let r14 = document.querySelector(".t14").innerHTML;
+            let r15 = document.querySelector(".t15").innerHTML;
+            let r16 = document.querySelector(".t16").innerHTML;
+            if (r1 != r2 && r2 != r3 && r3 != r4 && r5 != r6 && r6 != r7 && r7 != r8 && r9 != r10 && r10 != r11 && r11 != r12 && r13 != r14 && r14 != r15 && r15 != r16){
+                if(r1 != r5 && r2 != r6 && r3 != r7 && r4 != r8 && r5 != r9 && r6 != r10 && r7 != r11 && r8 != r12 && r9 != r13 && r10 != r14 && r11 != r15 && r12 != r16){
+                    if(r1 !="" && r2 != "" && r3 != "" && r4 !="" && r5 !="" && r6 != "" && r7 != "" && r8 !="" && r9 !="" && r10 != "" && r11 != "" && r12 !="" && r13 !="" && r14 != "" && r15 != "" && r16 !=""){
+                        let tab = document.querySelector("table");
+                        tab.classList.add("disabledbutton");
+                    }
+                }
+            } 
+        }
         // if(r1.innerHTML != "" && r2.innerHTML != "" && r3.innerHTML != "" && r4.innerHTML != "" && r5.innerHTML != "" && r6.innerHTML != "" && r7.innerHTML != "" && r8.innerHTML != "" && r9.innerHTML != "" && r10.innerHTML != "" && r11.innerHTML != "" && r12.innerHTML != "" && r13.innerHTML != "" && r14.innerHTML != "" && r15.innerHTML != "" && r16.innerHTML != ""){
         //             if(a1 == "not" && a2 == "not" && a3 == "not" && a4 == "not"){
         //                 let ac = document.querySelector(".div");
